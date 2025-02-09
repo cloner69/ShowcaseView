@@ -68,7 +68,8 @@ struct ShowCaseRoot: ViewModifier {
                         .offset(x: highlightRect.minX - 2.5, y: highlightRect.minY + safeArea.top - 2.5)
                 }
                 .ignoresSafeArea()
-                .onTapGesture {
+                .onChange(of: showTitle) { newValue in
+                    guard !newValue else { return }
                     if currentHighlight >= highlightOrder.count - 1 {
                         /// Hiding the Highlight View, becasue it's the Last Highlight
                         withAnimation(.easeInOut(duration: 0.25)) {
@@ -82,7 +83,7 @@ struct ShowCaseRoot: ViewModifier {
                             currentHighlight += 1
                         }
                         
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.55) {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
                             showTitle = true
                         }
                     }
@@ -102,7 +103,6 @@ struct ShowCaseRoot: ViewModifier {
                         .padding(.horizontal, 10)
                         /// iOS 16.4+ Modifier
                         .presentationCompactAdaptation(.popover)
-                        .interactiveDismissDisabled()
                 }
                 .scaleEffect(highlight.scale)
                 .offset(x: highlightRect.minX - 10, y: highlightRect.minY - 10)

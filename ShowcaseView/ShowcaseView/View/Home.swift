@@ -44,7 +44,7 @@ struct Home: View {
                             }
                             .showCase(
                                 order: 0,
-                                title: "My Current Location ",
+                                title: "My Current Location",
                                 cornerRadius: 10,
                                 style: .continuous
                             )
@@ -137,9 +137,6 @@ struct Home: View {
     }
 }
 
-struct Home_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
+#Preview {
+    ContentView()
 }
-
